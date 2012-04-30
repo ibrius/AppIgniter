@@ -1,0 +1,50 @@
+body 
+{
+	margin:0 auto 0 auto;
+	width:800px;
+	font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	word-wrap:break-word;
+}
+
+header
+{
+	min-height:80px;
+	margin:20px auto;
+	padding:10px;
+	border:1px solid #eee;
+}
+
+header h1
+{
+	margin:20px 0 0 0;
+	color:#e6ecf0;
+}
+
+h1
+{
+	font-size: 1.9em;
+	font-family: Arial, Verdana, sans-serif;
+	color:#4C7DAD;
+}
+
+#bg
+{
+	padding:10px;
+	margin:20px auto;
+	border:1px solid #eee;
+	min-height:400px;	
+}
+textarea
+{
+	width:772px;
+	margin:10px auto;
+	min-height:150px;
+}
+
+#footer
+{
+	min-height:40px;
+	border: 1px solid #eee;
+	margin: 20px auto;
+	padding:0px 10px;
+}

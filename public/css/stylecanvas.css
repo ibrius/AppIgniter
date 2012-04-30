@@ -1,0 +1,43 @@
+body 
+{
+	margin:0 auto 0 auto;
+	width:700px;
+	font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color:#a5a8a9;
+}
+
+header
+{
+	margin:20px auto;
+	border:1px solid #eee;
+	min-height:80px;
+	padding:10px;
+}
+
+header h1
+{
+	margin:0;
+	color:#e6ecf0;
+}
+
+h1
+{
+	margin:0;
+	color:#3b5b96;
+}
+
+#bg
+{
+	border:1px solid #eee;
+	padding:10px;
+	min-height:250px;
+	margin:20px auto;
+}
+
+#footer
+{
+	min-height:40px;
+	border: 1px solid #eee;
+	margin: 20px auto;
+	padding:0px 10px;
+}
