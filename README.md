@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FB Frapp Copyright 2012 Marina Ibrishimova and Byron Matus
  
  This program is free software: you can redistribute it and/or modify
@@ -34,3 +35,9 @@ Some examples of apps built using this can be found here: htps://ibrius.net
 Any feedback or contributions are welcome.
 
 We can be reached at 
+=======
+FB-Frapp
+========
+
+Skeleton for Facebook Page Tab or Canvas Apps built with Codeigniter
+>>>>>>> 47e89c96660ba747a3a01f938ab767b5372fb94b
