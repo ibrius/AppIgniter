@@ -1,6 +1,6 @@
 AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
  
- This program is free software: you can redistribute it and/or modify
+    This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
@@ -14,10 +14,10 @@ AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -----------------------------------------------------------------------------------------------------------------------
 
-If you are not familiar with Codeigniter, you might want to check out the basics first before working with FB Frapp:
+If you are not familiar with Codeigniter, you might want to check out the basics first before working with AppIgniter:
 http://codeigniter.com/user_guide/
 
-This is basically an app skeleton that can be used as a Facebook "tab" for pages/timelines or as just "an app on Facebook".  
+This is basically an app skeleton that can be used as a Facebook "tab" for pages/timelines or as just an "app on Facebook" to borrow Facebook's terminology.  
 
 To switch from one or the other, just change your default controller in application/config/routes.php to either tab_canvas or just canvas.
 
