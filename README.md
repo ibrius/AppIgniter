@@ -1,4 +1,4 @@
-FB Frapp Copyright 2012 Marina Ibrishimova and Byron Matus
+AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
  
  This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
