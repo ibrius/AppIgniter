@@ -17,7 +17,8 @@
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/ibrius/AppIgniter">View on GitHub</a>
-
+  	  
+		  <img 
           <h1 id="project_title">AppIgniter</h1>
           <h2 id="project_tagline">Easy Facebook Page Tab Apps and Canvas Apps with Codeigniter.</h2>
 
@@ -56,6 +57,14 @@
 <a href="https://apps.facebook.com/contact-timeline-app">Contact App</a><br>
 <a href="https://apps.facebook.com/donate-app">Donate App</a>
 </p>
+
+<h3>Description</h3>
+
+<p>There are two types of Facebook apps that you can build with AppIgniter: <em>Tab Apps for Facebook Pages</em> and <em>Apps on Facebook</em>, often called <em>Canvas Apps</eM.</p>
+   
+<p>The <em>Page Tab App</em> is actually two apps in one and has different user cases. It is both a <em>canvas</em> app and a <em>page tab</em> app.  The canvas app resides at apps.facebook.com/App-Namespace and is basically an installer for the page tab app.  With AppIgniter, a user visits the canvas app and is prompted to accept the permissions and then add the app to one or more of their pages.  After adding the app, they are redirected to the app on the last page they added it to. If this sounds confusing, it will make sense the first time you go through the steps.</p>
+
+<p>Once the tab app is installed on a page, it can be viewed there by logged in Facebook users. Here, there are two different kinds of logged in users that AppIgniter checks for.  One is the public user.  The other is the page admin user. Page admins are displayed a <em>backend</em> or <em>admin</em> view where they can update the content or change the options of their app.  Public users are displayed the <em>frontend</em> or <em>public</em> view that displays the information added by the admin user without the ability to edit or change it.</p>
 
 <h3>Installing</h3>
 
@@ -115,7 +124,7 @@ Make sure that your server has the version of PHP required by CodeIgniter: <a hr
 Unarchive the zip file in your public html folder.</p>
 
 <p><strong>Step 3</strong><br>
-Add your Facebook app information to the config array in application/models/Facebook_Model.php:</p>
+Add your Facebook app information to the facebook config file at <em>application/config/facebook.php</em></p>
 
 <div class="highlight">
 <pre><span class="x">$config = array(</span>
@@ -126,7 +135,25 @@ Add your Facebook app information to the config array in application/models/Face
 <span class="x">    );</span>
 </pre>
 </div>
-
+<p>You can also setup what user data you want to request from Facebook when someone uses the app:</p>
+<div class="highlight">
+<pre>
+<span class="x">$config['user_objects'] = array(</span>
+<span class="x">				'id'  => 'id',</span>
+<span class="x">				'name' => 'name',</span>
+<span class="x">				'link' => '',</span>
+<span class="x">				'first_name' => '',</span>
+<span class="x">				'middle_name' => '',</span>
+<span class="x">				'last_name' => '',</span>
+<span class="x">				'gender' => '',</span>
+<span class="x">				'locale' => '',</span>
+<span class="x">				'timezone' => '',</span>
+<span class="x">				'username' => '',</span>
+<span class="x">				'cover' => '',</span>
+<span class="x">				'picture' => '',</span>
+<span class="x">				etc.....</span>
+</pre>
+</div>
 
 <p><strong>Step 4</strong><br>
 Add your database settings near the bottom of the file in application/config/database.php</p>
