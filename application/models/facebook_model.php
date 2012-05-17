@@ -23,50 +23,72 @@ class Facebook_model extends CI_Model {
 	{
 		parent::__construct();
 		
-		//Your app information to pass to the Facebook sdk
-		$config = array(
-						'appId'  => 'YOUR_APP_ID',
-						'secret' => 'YOUR_APP_SECRET',
-						'url' => 'https://apps.facebook.com/YOUR_APP_NAMESPACE/', //With trailing slash / . Only needed for tab apps
-						'fileUpload' => false, // Indicates if the CURL based @ syntax for file uploads is enabled.
-						);
+		$this->config->load('facebook');
+		$fb_config = $this->config->item('fb_config');
 		
-		$this->load->library('Facebook', $config); //Initiate the Facebook PHP SDK
+		$this->load->library('Facebook', $fb_config); //Initiate the Facebook PHP SDK
+		$this->load->helper('facebook');
 		
 		//Gets the current user's id
 		$user = $this->facebook->getUser();
+		$fields = "";
+	
+		foreach( $this->config->item('user_objects') as $key => $value )
+		{
+			if($value == $key)
+			{
+				$fields .= "".$value.",";
+			}
+		}
 
-		// We may or may not have this data based on whether the user is logged in.
-		//
+	
 		// If we have a $user id here, it means we know the user has logged into
 		// Facebook, but we don't know if the access token is valid. An access
 		// token is invalid if the user logged out of Facebook.
 		$profile = null;
 		if($user)
-		{
-			try {
-			    // Proceed knowing you have a user who has logged in
-				$profile = $this->facebook->api('/me?fields=id,name,link,email');
-			} catch (FacebookApiException $e) {
+		{						
+			try 
+			{
+			     // Proceed knowing you have a user who has logged in
+			     	
+			     	if($this->config->item('token_on') == TRUE)
+			     	{			     
+			     		$token = $this->facebook->getAccessToken();
+					$profile = $this->facebook->api('/me?access_token='.$token.'?fields='.$fields.'');
+				}
+				else
+				{
+					$profile = $this->facebook->api('/me?fields='.$fields.'');
+				}
+			} 
+			catch (FacebookApiException $e) 
+			{
 				error_log($e);
-			    $user = null;
+				$user = null;
+				
+				if($this->config->item('fb_errors') == TRUE)
+				{
+					print_nice_r($e);
+				}
 			}		
-		}
+		}		
 		
 	     // Gather all the data that we need from Facebook into an array
 		$fb_data = array(
-						'me' => $profile,
-						'loginUrl' => $this->facebook->getLoginUrl(),
-						'uid' => $this->facebook->getUser(),
-						'logoutUrl' => $this->facebook->getLogoutUrl(),
-						'signedRequest' => $this->facebook->getSignedRequest(),
-						'accessToken' => $this->facebook->getAccessToken(),
-						'app_id' => $config['appId'],
-						'url' => $config['url']
-					);
+					'user_profile' => $profile,
+					'uid' => $profile['id'],
+					'login_url' => $this->facebook->getLoginUrl(),
+					'logout_url' => $this->facebook->getLogoutUrl(),
+					'signedRequest' => $this->facebook->getSignedRequest(),
+					'accessToken' => $this->facebook->getAccessToken(),
+					'app_id' => $fb_config['appId'],
+					'url' => $fb_config['url']
+				);
 		
 	     // Store all of the Facebook data in our session, which is stored in the database
 		$this->db_session->set_userdata('fb_data', $fb_data);
+		
 	}
 	
 		
