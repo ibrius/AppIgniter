@@ -8,9 +8,9 @@
 */
 
 $config['fb_config'] = array(
-				'appId'  => '338496212854541',
-				'secret' => '34324b3e3485e03721b8e29ab8126fd0',
-				'url' => 'https://apps.facebook.com/ibrius-cloud-test/', //With trailing slash / . Only needed for tab apps
+				'appId'  => 'your_appID',
+				'secret' => 'your_app_secret',
+				'url' => 'your_app_url', //With trailing slash / . Only needed for tab apps
 				'fileUpload' => false, // Indicates if the CURL based @ syntax for file uploads is enabled.
 				);
 				
