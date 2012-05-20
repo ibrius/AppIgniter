@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="AppIgniter : Easy Facebook Page Tab Apps and Canvas Apps with Codeigniter." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>AppIgniter</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ibrius/AppIgniter">View on GitHub</a>
+  	  
+          <h1 id="project_title">AppIgniter</h1>
+          <h2 id="project_tagline">Easy Facebook Page Tab Apps and Canvas Apps with Codeigniter.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ibrius/AppIgniter/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ibrius/AppIgniter/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>Welcome to AppIgniter</h3>
+
+<ul>
+<li>Do you like to use CodeIgniter? </li>
+<li>Thinking about making a Facebook app? </li>
+<li>Don't feel like doing the legwork to get started?</li>
+</ul><p>Well, we made AppIgniter for you. AppIgniter is already set up to authorize users so you can spend more time building your app and less time reading Facebook docs. Right now AppIgniter has two, let's say "modules", one for creating Tab Apps for Facebook Pages and one for creating general Facebook Apps. Our goal is to continue to add extra "modules" or features to AppIgniter that will facilitate the easy creation of Apps for Facebook.</p>
+
+<h3>Features</h3>
+
+<ul>
+<li>Pre-integrated with Facebook php-sdk</li>
+<li>Pre-integrated with HTMLpurifier so you can easily clean your input</li>
+<li>Auto-redirect to Facebook page after app install for Page Tab Apps</li>
+<li>Easy setup so you can get coding right away</li>
+<li>Everything that's great about CodeIgniter!</li>
+</ul>
+
+<h3>Examples</h3>
+
+<p>Here are a few links to apps we have created with AppIgniter:<br>
+<a href="https://apps.facebook.com/custom-welcome-tab">Welcome App</a><br>
+<a href="https://apps.facebook.com/contact-timeline-app">Contact App</a><br>
+<a href="https://apps.facebook.com/donate-app">Donate App</a>
+</p>
+
+<h3>Description</h3>
+
+<p>There are two types of Facebook apps that you can build with AppIgniter: <em>Tab Apps for Facebook Pages</em> and <em>Apps on Facebook</em>, often called <em>Canvas Apps</em>.</p>
+   
+<p>The <em>Page Tab App</em> is actually two apps in one and has different user cases. It is both a <em>canvas</em> app and a <em>page tab</em> app.  The canvas app resides at apps.facebook.com/App-Namespace and is basically an installer for the page tab app.  With AppIgniter, a user visits the canvas app and is prompted to accept the permissions and then add the app to one or more of their pages.  After adding the app, they are redirected to the app on the last page they added it to. If this sounds confusing, it will make sense the first time you go through the steps.</p>
+
+<p>Once the tab app is installed on a page, it can be viewed there by logged in Facebook users. Here, there are two different kinds of logged in users that AppIgniter checks for.  One is the public user.  The other is the page admin user. Page admins are displayed a <em>backend</em> or <em>admin</em> view where they can update the content or change the options of their app.  Public users are displayed the <em>frontend</em> or <em>public</em> view that displays the information added by the admin user without the ability to edit or change it.</p>
+
+<h3>Installing</h3>
+
+<p>First, you will have to create an app on Facebook. </p>
+
+<p>There is a great tutorial here: 
+<a href="https://developers.facebook.com/docs/appsonfacebook/tutorial/">https://developers.facebook.com/docs/appsonfacebook/tutorial/</a></p>
+
+<h4>Facebook Setup</h4>
+
+<p><strong>App on Facebook</strong>:<br>
+Your settings under this section should look like this:</p>
+
+<ul>
+<li>
+<strong>Canvas URL:</strong> <code>http:YourDomain.com/AppIgniter/public/</code><br>
+</li>
+<li>
+<strong>Secure Canvas URL:</strong> <code>https:YourDomain.com/AppIgniter/public/</code>
+</li>
+</ul><p><strong>Page Tab</strong>:<br>
+Your settings under this section should look like this:</p>
+
+<ul>
+<li>
+<strong>Page Tab Name:</strong> <code>Your App Name</code>
+</li>
+<li>
+<strong>Page Tab URL:</strong> <code>http:YourDomain.com/AppIgniter/public/index.php/tab</code><br>
+</li>
+<li>
+<strong>Secure Page Tab URL:</strong> <code>https:YourDomain.com/AppIgniter/public/index.php/tab</code><br>
+</li>
+<li>
+<strong>Page Tab Edit URL:</strong> <code>https:YourDomain.com/AppIgniter/public/index.php/tab</code>
+</li>
+</ul><p><strong>Make sure that you setup permissions for your Facebook app under Auth Dialog settings or it will not work!</strong></p>
+
+<h4>Server Setup</h4>
+
+<p><strong>Step 1</strong><br>
+Make sure that your server has the version of PHP required by CodeIgniter: <a href="http://codeigniter.com/user_guide/general/requirements.html">http://codeigniter.com/user_guide/general/requirements.html</a></p>
+
+<p>If you want to create a Page Tab, skip to step 2. </p>
+
+<p>If you want to create a general App on Facebook, open applications/config/routes.php and change the default controller on line 42 from "tab_canvas" to "canvas" so that it looks like this:</p>
+
+<div class="highlight">
+<pre><span class="x">41 //Set the default to "canvas" if you will not use your app as a tab for Facebook pages but just an app on Facebook</span>
+<span class="x">42 $route['default_controller'] = "canvas"; </span>
+<span class="x">43 $route['404_override'] = '';</span>
+</pre>
+</div>
+
+
+<p><strong>Step 2</strong><br>
+Unarchive the zip file in your public html folder.</p>
+
+<p><strong>Step 3</strong><br>
+Add your Facebook app information to the facebook config file at <em>application/config/facebook.php</em></p>
+
+<div class="highlight">
+<pre><span class="x">$config = array(</span>
+<span class="x">    'appId'  =&gt; 'YOUR_APP_ID',</span>
+<span class="x">    'secret' =&gt; 'YOUR_APP_SECRET',</span>
+<span class="x">    'url' =&gt; 'https://apps.facebook.com/YOUR_APP_NAMESPACE/', //With trailing slash / . Only needed for tab apps</span>
+<span class="x">    'fileUpload' =&gt; false, // Indicates if the CURL based @ syntax for file uploads is enabled.</span>
+<span class="x">    );</span>
+</pre>
+</div>
+<p>You can also setup what user data you want to request from Facebook when someone uses the app:</p>
+<div class="highlight">
+<pre>
+<span class="x">$config['user_objects'] = array(</span>
+<span class="x">				'id'  => 'id',</span>
+<span class="x">				'name' => 'name',</span>
+<span class="x">				'link' => '',</span>
+<span class="x">				'first_name' => '',</span>
+<span class="x">				'middle_name' => '',</span>
+<span class="x">				'last_name' => '',</span>
+<span class="x">				'gender' => '',</span>
+<span class="x">				'locale' => '',</span>
+<span class="x">				'timezone' => '',</span>
+<span class="x">				'username' => '',</span>
+<span class="x">				'cover' => '',</span>
+<span class="x">				'picture' => '',</span>
+<span class="x">				etc.....</span>
+</pre>
+</div>
+
+<p><strong>Step 4</strong><br>
+Add your database settings near the bottom of the file in application/config/database.php</p>
+
+<div class="highlight">
+<pre><span class="x">$active_group = 'default';</span>
+<span class="x">$active_record = TRUE;</span>
+
+<span class="x">$db['default']['hostname'] = 'localhost';</span>
+<span class="x">$db['default']['username'] = 'your_db_username';</span>
+<span class="x">$db['default']['password'] = 'your_db_password';</span>
+<span class="x">$db['default']['database'] = 'your_db_name';</span>
+<span class="x">$db['default']['dbdriver'] = 'mysql';</span>
+<span class="x">$db['default']['dbprefix'] = '';</span>
+<span class="x">$db['default']['pconnect'] = TRUE;</span>
+<span class="x">$db['default']['db_debug'] = TRUE;</span>
+<span class="x">$db['default']['cache_on'] = FALSE;</span>
+<span class="x">$db['default']['cachedir'] = '';</span>
+<span class="x">$db['default']['char_set'] = 'utf8';</span>
+<span class="x">$db['default']['dbcollat'] = 'utf8_general_ci';</span>
+<span class="x">$db['default']['swap_pre'] = '';</span>
+<span class="x">$db['default']['autoinit'] = TRUE;</span>
+<span class="x">$db['default']['stricton'] = FALSE;</span>
+</pre>
+</div>
+
+
+<p><strong>Step 5</strong><br>
+Import the database_example.sql file using phpMyAdmin or create a database with the same structure using your favorite method.</p>
+
+<p><strong>Step 6</strong><br>
+Go to apps.facebook.com/YOUR-APP-NAMESPACE, test it out, celebrate, and then start customizing.</p>
+
+<h3>Support or Contact</h3>
+
+<p>Need some help getting AppIgniter set up or want to leave some feeback?  Send us a message here: <a href="https://ibrius.net/contact.php">https://ibrius.net/contact.php</a></p>
+
+<h3>Git It!</h3>
+
+<pre><code>$ clone git@github.com:ibrius/AppIgniter.git
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">AppIgniter maintained by <a href="https://github.com/ibrius">ibrius</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
