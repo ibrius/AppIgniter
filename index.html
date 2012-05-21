@@ -20,7 +20,7 @@
 		  
 		  <div id="logo_wrap" />
 		    <img id="logo" src="images/appigniter-trans.png" />
-            <h1 id="project_title"><span style="color:#000;">A</span>ppIgniter</h1>
+            <h1 id="project_title">ppIgniter</h1>
 		  </div>
 		  
           <h2 id="project_tagline">Easy Facebook Page Tab Apps and Canvas Apps with Codeigniter.</h2>
@@ -38,10 +38,10 @@
         <h3>Welcome to AppIgniter</h3>
 
 <ul>
-<li>Do you like to use CodeIgniter? </li>
 <li>Thinking about making a Facebook app? </li>
 <li>Don't feel like doing the legwork to get started?</li>
-</ul><p>Well, we made AppIgniter for you. AppIgniter is already set up to authorize users so you can spend more time building your app and less time reading Facebook docs. Right now AppIgniter has two, let's say "modules", one for creating Tab Apps for Facebook Pages and one for creating general Facebook Apps. Our goal is to continue to add extra "modules" or features to AppIgniter that will facilitate the easy creation of Apps for Facebook.</p>
+<li>Want to use a powerful platform already integrated with Facebook?</li>
+</ul><p>Well, we made AppIgniter for you. AppIgniter is already set up to authorize users so you can spend more time building your app and less time reading Facebook docs. Right now AppIgniter has two modules, one for creating Tab Apps for Facebook Pages and one for creating general Facebook Apps. Our goal is to continue to add extra "modules" or features to AppIgniter that will facilitate the easy development of Apps for Facebook.</p>
 
 <h3>Features</h3>
 
@@ -71,13 +71,14 @@
 
 <h3>Installing</h3>
 
-<p>First, you will have to create an app on Facebook. </p>
+<p>First, you will have to create an app on Facebook. You can do this by visiting the Facebook <a href="https://developers.facebook.com/apps">Developer App</a>. Don't worry about changing any of the settings yet, just create the app for now.</p>
 
-<p>There is a great tutorial here: 
-<a href="https://developers.facebook.com/docs/appsonfacebook/tutorial/">https://developers.facebook.com/docs/appsonfacebook/tutorial/</a></p>
+<p>If you want to read more about Facebook Apps, check out their great tutorial here:<br>
+<a href="https://developers.facebook.com/docs/appsonfacebook/tutorial/">Facebook App Tutorial</a></p>
 
 <h4>Facebook Setup</h4>
-
+<p>Now it's time to change your app settings. Go to the <a href="https://developers.facebook.com/apps">Developer App</a>, choose your app from the left, and click "edit settings".<br>  
+Underneath of <em>Select how your app integrates with Facebook</em>, there are two sections that you will need to edit: <em>App on Facebook</em> and <em>Page Tab</em>.</p>
 <p><strong>App on Facebook</strong>:<br>
 Your settings under this section should look like this:</p>
 
@@ -104,16 +105,21 @@ Your settings under this section should look like this:</p>
 <li>
 <strong>Page Tab Edit URL:</strong> <code>https:YourDomain.com/AppIgniter/public/index.php/tab</code>
 </li>
-</ul><p><strong>Make sure that you setup permissions for your Facebook app under Auth Dialog settings or it will not work!</strong></p>
+</ul><p><strong style="color:red;">Important:</strong> You will need to either enable Sandbox Mode under the Advanced Settings tab, or set up your auth dialog complete with a privacy policy and terms of use.<br>
+<a href="https://developers.facebook.com/docs/opengraph/authentication/#configure">Setting up Auth Dialog</a></p>
 
 <h4>Server Setup</h4>
 
 <p><strong>Step 1</strong><br>
 Make sure that your server has the version of PHP required by CodeIgniter: <a href="http://codeigniter.com/user_guide/general/requirements.html">http://codeigniter.com/user_guide/general/requirements.html</a></p>
 
+<p>Then <a href="https://github.com/ibrius/AppIgniter/zipball/master">Download AppIgniter</a>. 
+Unarchive the zip file in your public html folder and rename the unarchived folder to AppIgniter.  You need to rename the folder so that the css files will be pointing to the right place.  Alternatively, you can change the paths in the header view files.
+<br><strong style="color:red">Important: </strong>This is the easiest way to set up AppIgniter.  For better security, you should place the application and system folders below the webroot and add their new paths to AppIgniter/public/index.php</p>
+
 <p>If you want to create a Page Tab, skip to step 2. </p>
 
-<p>If you want to create a general App on Facebook, open applications/config/routes.php and change the default controller on line 42 from "tab_canvas" to "canvas" so that it looks like this:</p>
+<p>If you want to create a general App on Facebook, open the file AppIgniter/applications/config/routes.php and change the default controller on line 42 from "tab_canvas" to "canvas" so that it looks like this:</p>
 
 <div class="highlight">
 <pre><span class="x">41 //Set the default to "canvas" if you will not use your app as a tab for Facebook pages but just an app on Facebook</span>
@@ -122,15 +128,11 @@ Make sure that your server has the version of PHP required by CodeIgniter: <a hr
 </pre>
 </div>
 
-
-<p><strong>Step 2</strong><br>
-Unarchive the zip file in your public html folder.</p>
-
-<p><strong>Step 3</strong><br>
-Add your Facebook app information to the facebook config file at <em>application/config/facebook.php</em></p>
+<br><p><strong>Step 2</strong><br>
+Add your Facebook app information to the facebook config file at <em>AppIgniter/application/config/facebook.php</em></p>
 
 <div class="highlight">
-<pre><span class="x">$config = array(</span>
+<pre><span class="x">$config['fb_config'] = array(</span>
 <span class="x">    'appId'  =&gt; 'YOUR_APP_ID',</span>
 <span class="x">    'secret' =&gt; 'YOUR_APP_SECRET',</span>
 <span class="x">    'url' =&gt; 'https://apps.facebook.com/YOUR_APP_NAMESPACE/', //With trailing slash / . Only needed for tab apps</span>
@@ -138,28 +140,43 @@ Add your Facebook app information to the facebook config file at <em>application
 <span class="x">    );</span>
 </pre>
 </div>
-<p>You can also setup what user data you want to request from Facebook when someone uses the app:</p>
+<p>You can also set up what user data you want to request from Facebook when someone uses the app:</p>
 <div class="highlight">
 <pre>
+/**
+|-------------------------------------------------------------------
+| Facebook User Objects
+|-------------------------------------------------------------------
+|
+| You can set any user object below and it will be included in your databse session so that it always available.
+| The objects will be stored in an array in $fb_data['profile']
+|
+| To include an object, make the value equal the key: Eg. 'name' => 'name' 
+| To exclude an object, leave the value blank: E. 'name' => ''
+|
+| For more information about the structure of each of these object see:
+| https://developers.facebook.com/docs/reference/api/user/
+|
+**/
 <span class="x">$config['user_objects'] = array(</span>
-<span class="x">				'id'  => 'id',</span>
-<span class="x">				'name' => 'name',</span>
-<span class="x">				'link' => '',</span>
-<span class="x">				'first_name' => '',</span>
-<span class="x">				'middle_name' => '',</span>
-<span class="x">				'last_name' => '',</span>
-<span class="x">				'gender' => '',</span>
-<span class="x">				'locale' => '',</span>
-<span class="x">				'timezone' => '',</span>
-<span class="x">				'username' => '',</span>
-<span class="x">				'cover' => '',</span>
-<span class="x">				'picture' => '',</span>
+<span class="x">				'id'  =&gt; 'id',</span>
+<span class="x">				'name' =&gt; 'name',</span>
+<span class="x">				'link' =&gt; '',</span>
+<span class="x">				'first_name' =&gt; '',</span>
+<span class="x">				'middle_name' =&gt; '',</span>
+<span class="x">				'last_name' =&gt; '',</span>
+<span class="x">				'gender' =&gt; '',</span>
+<span class="x">				'locale' =&gt; '',</span>
+<span class="x">				'timezone' =&gt; '',</span>
+<span class="x">				'username' =&gt; '',</span>
+<span class="x">				'cover' =&gt; '',</span>
+<span class="x">				'picture' =&gt; '',</span>
 <span class="x">				etc.....</span>
 </pre>
 </div>
-
-<p><strong>Step 4</strong><br>
-Add your database settings near the bottom of the file in application/config/database.php</p>
+<br>
+<p><strong>Step 3</strong><br>
+Add your database settings near the bottom of the file in <em>AppIgniter/application/config/database.php</em></p>
 
 <div class="highlight">
 <pre><span class="x">$active_group = 'default';</span>
@@ -183,21 +200,17 @@ Add your database settings near the bottom of the file in application/config/dat
 </pre>
 </div>
 
+<br>
+<p><strong>Step 4</strong><br>
+Import the database_example.sql file using phpMyAdmin or create a table with the same structure using your favorite method.</p>
 
 <p><strong>Step 5</strong><br>
-Import the database_example.sql file using phpMyAdmin or create a database with the same structure using your favorite method.</p>
-
-<p><strong>Step 6</strong><br>
 Go to apps.facebook.com/YOUR-APP-NAMESPACE, test it out, celebrate, and then start customizing.</p>
 
 <h3>Support or Contact</h3>
 
 <p>Need some help getting AppIgniter set up or want to leave some feeback?  Send us a message here: <a href="https://ibrius.net/contact.php">https://ibrius.net/contact.php</a></p>
 
-<h3>Git It!</h3>
-
-<pre><code>$ clone git@github.com:ibrius/AppIgniter.git
-</code></pre>
       </section>
     </div>
 
