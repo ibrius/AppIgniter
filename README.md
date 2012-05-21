@@ -16,10 +16,10 @@ AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
 
 AppIgniter is a framework for Facebook apps that is built with CodeIgniter. It is designed to make it easy to quickly set up and build a Facebook app.  It features pre-integration with the Facebook php-sdk, built-in user authentication, pre-integration with htmlPurifier, quick and easy setup.
 
+Learn more at our [Project Page](https://ibrius.github.com/AppIgniter)
+
 If you are not familiar with Codeigniter, you might want to check out the basics first before working with AppIgniter:
 * [CodeIgniter User Guide](http://codeigniter.com/user_guide/)
-
-Check out our [Project Page](https://ibrius.github.com/AppIgniter)
 
 There are two types of Facebook apps that you can build with AppIgniter: *Tab Apps for Facebook Pages* and *Apps on Facebook*, often called *Canvas Apps*.
    
@@ -28,13 +28,17 @@ The *Page Tab App* is actually two apps in one and has different user cases. It 
 Once the tab app is installed on a page, it can be viewed there by logged in Facebook users. Here, there are two different kinds of logged in users that AppIgniter checks for.  One is the public user.  The other is the page admin user. Page admins are displayed a *backend* or *admin* view where they can update the content or change the options of their app.  Public users are displayed the *frontend* or *public* view that displays the information added by the admin user without the ability to edit or change it.
 
 ### Installing
-First, you will have to create an app on Facebook. 
+First, you will have to create an app on Facebook. You can do this by visiting the [Facebook Developer App](https://developers.facebook.com/apps).
 
-There is a great tutorial here: 
+If you want to read more about Facebook Apps, check out their great tutorial here:
 https://developers.facebook.com/docs/appsonfacebook/tutorial/
 
 
 #### Facebook Setup
+
+Now it's time to change your app settings. Go to the Developer App, choose your app from the left, and click "edit settings".
+Underneath of Select how your app integrates with Facebook, there are two sections that you will need to edit: *App on Facebook* and *Page Tab*.
+
 **App on Facebook**:  
 Your settings under this section should look like this:
 - **Canvas URL:** ```http:YourDomain.com/AppIgniter/public/```    
@@ -47,7 +51,8 @@ Your settings under this section should look like this:
 - **Secure Page Tab URL:** ```https:YourDomain.com/AppIgniter/public/index.php/tab```   
 - **Page Tab Edit URL:** ```https:YourDomain.com/AppIgniter/public/index.php/tab```
 
-**Make sure that you setup permissions for your Facebook app under Auth Dialog settings or it will not work!**
+**Important:** You will need to either enable Sandbox Mode under the Advanced Settings tab, or set up your auth dialog complete with a privacy policy and terms of use.
+[Setting up Auth Dialog](https://developers.facebook.com/docs/opengraph/authentication/#configure)
 
 
 #### Server Setup
@@ -55,7 +60,10 @@ Your settings under this section should look like this:
 Make sure that your server has the version of PHP required by CodeIgniter: 
 [Check Required Version Here](http://codeigniter.com/user_guide/general/requirements.html)
 
-If you want to create a Page Tab, skip to step 2. 
+Then Download AppIgniter. Unarchive the zip file in your public html folder and rename the unarchived folder to AppIgniter. You need to rename the folder so that the css files will be pointing to the right place. Alternatively, you can change the paths in the header view files. 
+**Important:** This is the easiest way to set up AppIgniter. For better security, you should place the application and system folders below the webroot and add their new paths to *AppIgniter/public/index.php*
+
+If you want to create a Page Tab, skip to step 2.
 
 If you want to create a general App on Facebook, open *applications/config/routes.php* and change the default controller on line 42 from "tab_canvas" to "canvas" so that it looks like this:
 ```php
@@ -65,12 +73,9 @@ If you want to create a general App on Facebook, open *applications/config/route
 ```
 
 **Step 2**   
-Unarchive the zip file in your public html folder.
-
-**Step 3**   
 Add your Facebook app information to the facebook config file at *application/config/facebook.php*
 ```php
-$config = array(
+$config['fb_config'] = array(
 	'appId'  => 'YOUR_APP_ID',
 	'secret' => 'YOUR_APP_SECRET',
 	'url' => 'https://apps.facebook.com/YOUR_APP_NAMESPACE/', //With trailing slash / . Only needed for tab apps
@@ -79,6 +84,21 @@ $config = array(
 ```
 You can also setup what user data you want to request from Facebook when someone uses the app:
 ```php
+/**
+|-------------------------------------------------------------------
+| Facebook User Objects
+|-------------------------------------------------------------------
+|
+| You can set any user object below and it will be included in your databse session so that it always available.
+| The objects will be stored in an array in $fb_data['profile']
+|
+| To include an object, make the value equal the key: Eg. 'name' => 'name' 
+| To exclude an object, leave the value blank: E. 'name' => ''
+|
+| For more information about the structure of each of these object see:
+| https://developers.facebook.com/docs/reference/api/user/
+|
+**/
 $config['user_objects'] = array(
 				'id'  => 'id',
 				'name' => 'name',
@@ -95,7 +115,7 @@ $config['user_objects'] = array(
 				etc.....
 ```
 
-**Step 4**   
+**Step 3**   
 Add your database settings near the bottom of the file in application/config/database.php
 ```php
 $active_group = 'default';
@@ -118,10 +138,10 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 ```
 
-**Step 5**   
-Import the database_example.sql file using phpMyAdmin or create a database with the same structure using your favorite method.
+**Step 4**   
+Import the database_example.sql file using phpMyAdmin or create a table with the same structure using your favorite method.
 
-**Step 6**   
+**Step 5**   
 Go to apps.facebook.com/YOUR-APP-NAMESPACE, test it out, celebrate, and then start customizing.
 
 Some examples of apps built using AppIgniter can be found at [Ibrius](https://ibrius.net)
