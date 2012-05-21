@@ -37,7 +37,7 @@ class Canvas extends CI_controller
 				
 		if($id) // We have a user logged into Facebook	
 		{				
-			$data['login_url'] = $fb_data['loginUrl'];
+			$data['login_url'] = $fb_data['login_url'];
 			$data['app_id'] = $fb_data['app_id'];
 			$data['app_url'] = $fb_data['url'];
 
@@ -45,7 +45,7 @@ class Canvas extends CI_controller
 		}	
 		else //Tell them to log in
 		{	
-			$data['login_url'] = $fb_data['loginUrl']; //You could use this in the view to provide a login link
+			$data['login_url'] = $fb_data['login_url']; //You could use this in the view to provide a login link
 			$data['error'] = $this->lang->line('common_not_logged_in');
 			
 			$this->load->view('canvas/canvas_error', $data);

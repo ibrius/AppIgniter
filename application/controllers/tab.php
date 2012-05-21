@@ -36,7 +36,7 @@ class Tab extends CI_controller
 		header('p3p: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
 		
 		// Get the Facebook data array that is being stored in our session in the Facebook_model
-		// Array: [me] [uid] [loginUrl] [logoutUrl] [signedRequest] [accessToken]
+		// Array: [me] [uid] [login_url] [logout_url] [signedRequest] [accessToken]
 		$fb_data = $this->db_session->userdata('fb_data');		
 								
 		// Extract the page id, and isAdmin values from the Facebook Signed Request array		
