@@ -10,7 +10,7 @@
 $config['fb_config'] = array(
 				'appId'  => 'your_appID',
 				'secret' => 'your_app_secret',
-				'url' => 'your_app_url', //With trailing slash / . Only needed for tab apps
+				'url' => 'https://apps.facebook.com/your_app_namespace', //With trailing slash / . Only needed for tab apps
 				'fileUpload' => false, // Indicates if the CURL based @ syntax for file uploads is enabled.
 				);
 				
