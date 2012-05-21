@@ -151,11 +151,11 @@ img {
   margin: 10px 0 10px 0;
   border: 1px solid #ebebeb;
 
-  box-shadow: 0 0 5px #ebebeb;
+  /*box-shadow: 0 0 5px #ebebeb;
   -webkit-box-shadow: 0 0 5px #ebebeb;
   -moz-box-shadow: 0 0 5px #ebebeb;
   -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
+  -ms-box-shadow: 0 0 5px #ebebeb;*/
 }
 
 pre, code {
@@ -372,6 +372,19 @@ Full-Width Styles
 
 #footer_wrap {
   background: #212121;
+}
+
+#logo {
+  height:80px;
+  width:80px;
+  float:left;
+  margin:-30px -52px 0 0;
+  border:none;
+  z-index:99999;
+}
+
+#logo_wrap {
+  margin-left: -30px;
 }
 
 
