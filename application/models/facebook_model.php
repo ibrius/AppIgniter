@@ -41,6 +41,7 @@ class Facebook_model extends CI_Model {
 			}
 		}
 
+		$fields = trim($fields, ','); //Removes the final comma so that Facebook doesn't throw an error.
 	
 		// If we have a $user id here, it means we know the user has logged into
 		// Facebook, but we don't know if the access token is valid. An access
@@ -73,9 +74,7 @@ class Facebook_model extends CI_Model {
 				}
 			}		
 		}		
-		
-		$fields = trim($fields, ','); //Removes the final comma so that Facebook doesn't throw an error.
-		
+				
 	     // Gather all the data that we need from Facebook into an array
 		$fb_data = array(
 					'user_profile' => $profile,
