@@ -16,7 +16,7 @@ $config['fb_config'] = array(
 				
 $config['fb_errors'] = TRUE; //Show graph api errors for calls made to the objects set here.
 
-$config['token_on'] = FALSE; // If you are only using public information, set this to FALSE to keep your session data smaller.
+$config['token_on'] = TRUE; // Currently, this must be turned on or you will get an API error.  We are working on fixing this bug.
 		
 		
 /**
