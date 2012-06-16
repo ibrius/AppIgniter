@@ -16,6 +16,8 @@ $config['fb_config'] = array(
 				
 $config['fb_errors'] = TRUE; //Show graph api errors for calls made to the objects set here.
 
+$config['gate_on'] = true; // For page tab apps only.  If this is set to true, public users will have to like the page before seeing the apps content.
+
 
 /*
 |-------------------------------------------------------------------

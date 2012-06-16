@@ -39,9 +39,11 @@ class Tab extends CI_controller
 		// Array: [me] [uid] [login_url] [logout_url] [signedRequest] [accessToken]
 		$fb_data = $this->db_session->userdata('fb_data');		
 								
-		// Extract the page id, and isAdmin values from the Facebook Signed Request array		
+		// Extract the page id, liked, and isAdmin values from the Facebook Signed Request array		
 		$signed_request = $fb_data['signedRequest'];				
 		$page = $signed_request['page'];
+		$liked = $page['liked'];
+		if($this->config->item('gate_on') != true) { $liked = 1; } // If the like gate is off, then we pretend everyone likes it.
 		$page_id = $page['id'];		
 		$admin = $page['admin'];
 		$user_id = $fb_data['uid'];
@@ -92,8 +94,10 @@ class Tab extends CI_controller
 				{
 		    			$data['message'] = $tab_data['message']; //Message added by admin
 		    			$data['admin'] = $admin;
-		    			   				
-					$this->load->view('tab/tab_public', $data);
+		    			$data['liked'] = $liked;
+		    					   				
+				   	$this->load->view('tab/tab_public', $data);
+					
 				}
 				else // Load a view saying the app is not set up yet
 				{	

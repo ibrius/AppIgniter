@@ -1,7 +1,7 @@
 body 
 {
 	margin:0 auto 0 auto;
-	width:800px;
+	width:785px;
 	font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	word-wrap:break-word;
 }
@@ -39,6 +39,32 @@ textarea
 	width:772px;
 	margin:10px auto;
 	min-height:150px;
+}
+
+#like-gate 
+{
+
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* ie8 supports both; this variant doesn't work if meta tag below used */
+	filter:alpha(opacity=84); /* for internet explorer <= 7, and 8 when <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> */
+	-moz-opacity:0.84; /* for older gecko browsers */
+	-khtml-opacity: 0.84; /* for older webkit browsers */
+	opacity: 0.84; /* CSS3 standard */
+	background-color: #001452;
+	position: absolute;
+	top:20px;
+	left:10px;
+  	min-height: 770px;
+  	width: 785px;
+  	z-index: 9999;
+}
+
+#like-gate p 
+{
+  	color: #fff;
+  	font-weight: bold;
+  	text-align: center;
+  	margin-top: 100px;
+  	font-size: 32px;
 }
 
 #footer

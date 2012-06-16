@@ -20,6 +20,13 @@ This file is part of AppIgniter.
 
 $this->load->view('tab/partial/header'); ?>
 
+<?php if ($liked != 1){
+
+	?><div id="like-gate">
+	     <p>Like our page to view this content....</p> <img src="/wlcmdx/images/like-arrow.png" alt="arrow" title="Look up for the Like button!" style="position:absolute; top:35px; right:15px" />
+	  </div>
+	<?php } ?>
+
 <div id="bg">
 	
 	<p><?php echo nl2br($message); ?></p>

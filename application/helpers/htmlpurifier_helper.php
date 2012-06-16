@@ -44,4 +44,3 @@ function html_purify($dirty_html)
     return HTMLPurifier($dirty_html, $config);
 
 }
-?> 
