@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `fbid` (
   `fb_id` bigint(30) unsigned NOT NULL,
   `id` bigint(30) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=289 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -41,9 +41,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `page_id` bigint(100) unsigned NOT NULL,
   `id` bigint(30) unsigned NOT NULL auto_increment,
   `message` text NOT NULL,
-  `with_game` int(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=160 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
