@@ -1,0 +1,30 @@
+[11-Sep-2012 15:38:53] PHP Fatal error:  Call to a member function query() on a non-object in /home/ch1306/public_html/AppIgniter/application/libraries/Session.php on line 300
+[11-Sep-2012 15:40:52] PHP Fatal error:  Call to a member function userdata() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/canvas.php on line 34
+[11-Sep-2012 16:08:10] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 73
+[11-Sep-2012 16:09:39] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 73
+[11-Sep-2012 16:10:13] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 76
+[11-Sep-2012 16:10:53] OAuthException: (#803) Some of the aliases you requested do not exist: 1me
+[11-Sep-2012 16:26:01] PHP Fatal error:  Call to a member function post_action() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/canvas.php on line 43
+[11-Sep-2012 20:22:39] PHP Fatal error:  Call to a member function post_action() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/canvas.php on line 43
+[11-Sep-2012 20:23:20] PHP Fatal error:  Call to a member function get_friends() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/canvas.php on line 43
+[11-Sep-2012 20:23:50] PHP Fatal error:  Call to a member function get_friends() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/canvas.php on line 44
+[11-Sep-2012 20:26:40] OAuthException: Unknown path components: /:read
+[11-Sep-2012 20:29:01] PHP Fatal error:  Call to a member function item() on a non-object in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 103
+[11-Sep-2012 20:31:09] PHP Fatal error:  Call to a member function item() on a non-object in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 103
+[11-Sep-2012 20:31:48] PHP Fatal error:  Call to undefined method Session::item() in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 103
+[11-Sep-2012 20:32:11] OAuthException: Unknown path components: /:read
+[11-Sep-2012 20:32:31] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 20:34:55] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 20:37:26] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 20:45:07] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 20:45:56] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 20:46:43] OAuthException: Unknown path components: /appigniter:read
+[11-Sep-2012 22:04:02] Exception: Object at URL 'https://ibrius.net/AppIgniter/public/article.php' is invalid because the configured 'og:type' of 'appigniter:article' is invalid.
+[11-Sep-2012 22:04:39] Exception: Object at URL 'https://ibrius.net/AppIgniter/public/article.php' is invalid because the configured 'og:type' of 'appigniter:article' is invalid.
+[11-Sep-2012 22:09:29] Exception: Object at URL 'https://ibrius.net/AppIgniter/public/article.php' of type 'appigniter:app' is invalid because it the specified fb:app_id '285955281476935' is not the owner of specified og:type.
+[11-Sep-2012 22:11:20] Exception: Object at URL 'https://ibrius.net/AppIgniter/public/article.php' of type 'appigniter:app' is invalid because it the specified fb:app_id '285955281476935' is not the owner of specified og:type.
+[12-Oct-2012 03:20:19] PHP Parse error:  syntax error, unexpected '}', expecting ';' or '{' in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 210
+[18-Oct-2012 00:33:35] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/ch1306/public_html/AppIgniter/application/models/appi.php on line 84
+[18-Oct-2012 00:58:52] PHP Fatal error:  Call to a member function userdata() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/tab_canvas.php on line 33
+[18-Oct-2012 01:12:19] PHP Fatal error:  Call to a member function set_userdata() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/tab.php on line 50
+[18-Oct-2012 01:13:54] PHP Fatal error:  Call to a member function set_userdata() on a non-object in /home/ch1306/public_html/AppIgniter/application/controllers/tab.php on line 50

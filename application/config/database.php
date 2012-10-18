@@ -42,9 +42,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'your_db_username';
-$db['default']['password'] = 'your_db_password';
-$db['default']['database'] = 'your_db_name';
+$db['default']['username'] = 'pusername';
+$db['default']['password'] = 'password';
+$db['default']['database'] = 'database';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

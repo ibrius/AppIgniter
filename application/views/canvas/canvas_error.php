@@ -22,6 +22,7 @@ $this->load->view('canvas/partial/header'); ?>
 
 	<div id="bg">
 	    <p><?php echo $error; ?></p>
+	    <a href="<?php echo $login_url; ?>">Authenticate</a>
 	</div>
 
 <?php $this->load->view('canvas/partial/footer'); ?>

@@ -23,7 +23,6 @@ class Canvas extends CI_controller
 	function __construct()
 	{
 		parent::__construct('canvas');
-		$this->load->model('Facebook_model');
 		  
 	}
 	function index()
@@ -32,23 +31,22 @@ class Canvas extends CI_controller
 		// It is a compact privacy policy. See: http://www.p3pwriter.com/LRN_111.asp
 		header('p3p: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
 		
-		$fb_data = $this->db_session->userdata('fb_data'); //Get the user's data from our session
-		$id = $fb_data['uid'];			
+		
+		//Get the user's data from our session stored in the Appi model
+		//$fb_data contains: [user_id][login_url][logout_url][signed_request][access_token][app_id][app_url]
+		$fb_data = $this->session->userdata('fb_data');
+		
+		$id = $fb_data['user_id'];			
 				
-		if($id) // We have a user logged into Facebook	
+		if($id) // We have a user logged into Facebook and our app
 		{				
-			$data['login_url'] = $fb_data['login_url'];
-			$data['app_id'] = $fb_data['app_id'];
-			$data['app_url'] = $fb_data['url'];
-
-			$this->load->view('canvas/canvas', $data);
+			
+			$this->load->view('canvas/canvas', $fb_data);
 		}	
 		else //Tell them to log in
 		{	
-			$data['login_url'] = $fb_data['login_url']; //You could use this in the view to provide a login link
-			$data['error'] = $this->lang->line('common_not_logged_in');
-			
-			$this->load->view('canvas/canvas_error', $data);
+			$fb_data['error'] = $this->lang->line('common_authenticate');
+			$this->load->view('canvas/canvas_error', $fb_data);
 		}	
 		
 	}

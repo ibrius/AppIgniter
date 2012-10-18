@@ -14,7 +14,10 @@ AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -----------------------------------------------------------------------------------------------------------------------
 
-AppIgniter is a framework for Facebook apps that is built with CodeIgniter. It is designed to make it easy to quickly set up and build a Facebook app.  It features pre-integration with the Facebook php-sdk, built-in user authentication, pre-integration with htmlPurifier, quick and easy setup.
+### New in this version
+More efficient code, better error handling, a new post_to_graph() function in Appi model, overall restructuring of some things.
+
+AppIgniter is a quick-start for Facebook apps that is built with CodeIgniter. It is designed to make it easy to quickly set up and build a Facebook app.  It features pre-integration with the Facebook php-sdk, built-in user authentication, pre-integration with htmlPurifier, quick and easy setup.
 
 Learn more at our [Project Page](https://ibrius.github.com/AppIgniter)
 
@@ -51,7 +54,7 @@ Your settings under this section should look like this:
 - **Secure Page Tab URL:** ```https:YourDomain.com/AppIgniter/public/index.php/tab```   
 - **Page Tab Edit URL:** ```https:YourDomain.com/AppIgniter/public/index.php/tab```
 
-**Important:** You will need to either enable Sandbox Mode under the Advanced Settings tab, or set up your auth dialog complete with a privacy policy and terms of use.
+**Important:** You will need to either enable Authenticated Referrals in the permissions section.
 [Setting up Auth Dialog](https://developers.facebook.com/docs/opengraph/authentication/#configure)
 
 

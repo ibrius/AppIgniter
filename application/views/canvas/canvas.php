@@ -17,10 +17,10 @@ This file is part of AppIgniter.
     You should have received a copy of the GNU Affero General Public License
     along with AppIgniter.  If not, see <http://www.gnu.org/licenses/>.
 **/
-
 echo $this->load->view('canvas/partial/header'); ?>
 
 
+	
 	<div id="bg">
 		<h1><?php echo $this->lang->line('common_my_app'); ?></h1>
 		<p><?php echo $this->lang->line('common_canvas_app_description'); ?></p>

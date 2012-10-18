@@ -38,7 +38,7 @@
 |
 */
 
-//Set the default to "canvas" if you will not use your app as a tab for Facebook pages but just an app on Facebook
+//Set the default to "canvas" if you will use your app as an "app on Facebook" instead of a page tab app.
 $route['default_controller'] = "tab_canvas"; 
 $route['404_override'] = '';
 

@@ -22,10 +22,7 @@ class Tab extends CI_controller
 	function __construct()
 	{
 		parent::__construct('tab');
-		$this->load->model('Facebook_model');
 		$this->load->model('Create');
-		$this->load->helper(array('form', 'url', 'language'));
-		$this->load->library('form_validation');
 		$this->load->helper('htmlpurifier');
 		  
 	}
@@ -37,22 +34,22 @@ class Tab extends CI_controller
 		
 		// Get the Facebook data array that is being stored in our session in the Facebook_model
 		// Array: [me] [uid] [login_url] [logout_url] [signedRequest] [accessToken]
-		$fb_data = $this->db_session->userdata('fb_data');		
+		$fb_data = $this->session->userdata('fb_data');		
 								
 		// Extract the page id, liked, and isAdmin values from the Facebook Signed Request array		
-		$signed_request = $fb_data['signedRequest'];				
+		$signed_request = $fb_data['signed_request'];				
 		$page = $signed_request['page'];
 		$liked = $page['liked'];
 		if($this->config->item('gate_on') != true) { $liked = 1; } // If the like gate is off, then we pretend everyone likes it.
 		$page_id = $page['id'];		
 		$admin = $page['admin'];
-		$user_id = $fb_data['uid'];
+		$user_id = $fb_data['user_id'];
 		$app_id = $fb_data['app_id'];
 		
 		// Add some of this data back to the session in an easier format to retrieve later
-		$this->db_session->set_userdata('page_id', $page_id);
-		$this->db_session->set_userdata('is_admin', $admin);
-		$this->db_session->set_userdata('app_id', $app_id);
+		$this->session->set_userdata('page_id', $page_id);
+		$this->session->set_userdata('is_admin', $admin);
+		$this->session->set_userdata('app_id', $app_id);
 		
 		//$data is the information we will be passing to the view files 
 		$data['id'] = $page_id;
@@ -112,12 +109,9 @@ class Tab extends CI_controller
 		}
 		else //The user is not logged in. Show them an error page
 		{
-			$error = $this->lang->line('common_not_logged_in');
-			$data = array(
-					'error' => $error,
-					'page_id' => $page_id,
-					);
-			$this->load->view('tab/tab_error', $data);
+			$fb_data['error'] = $this->lang->line('common_not_logged_in');
+
+			$this->load->view('tab/tab_error', $fb_data);
 		}		
 		
 
@@ -127,28 +121,22 @@ class Tab extends CI_controller
 	function create() // Get the admin user's information and enter it into the database so that we can display their tab to the public
 	{
 		// Get the data was stored in our session in the index
-		$admin = $this->db_session->userdata('is_admin');
-		$page_id = $this->db_session->userdata('page_id');
-		$app_id = $this->db_session->userdata('app_id');
+		$data['admin'] = $this->session->userdata('is_admin');
+		$data['page_id'] = $this->session->userdata('page_id');
+		$data['app_id'] = $this->session->userdata('app_id');
 	                
 
-		if($admin == 1 && $page_id) //Proceed knowing that we have a logged-in administrator viewing the app from a page
+		if($data['admin'] == 1 && $data['page_id']) //Proceed knowing that we have a logged-in administrator viewing the app from a page
 		{				
 			 
-			$message = html_purify($this->input->post('message')); //Get the data that was entered into the form
+			$data['message'] = html_purify($this->input->post('message')); //Get the data that was entered into the form
 			 
 		
 			// Put the admin's data into an array to be added to the database
 			$data_user = array(
-					'message' => $message,
-					'page_id' => $page_id,
+					'message' => $data['message'],
+					'page_id' => $data['page_id'],
 					); 
-			
-			// Get data ready to load in view file
-			$data['page_id'] = $page_id;
-			$data['is_admin'] = $admin;
-			$data['message'] = $message;
-			$data['app_id'] = $app_id;
 
 		// Validate the user's input from a form in view->'create' ------------------------------------------
 	
@@ -174,20 +162,14 @@ class Tab extends CI_controller
 	function edit_tab() // Updates database after admin makes changes
 	{
 		// Get the data was stored in our session in the index
-		$admin = $this->db_session->userdata('is_admin');
-		$page_id = $this->db_session->userdata('page_id');							
-		$app_id = $this->db_session->userdata('app_id');							
+		$data['admin'] = $this->session->userdata('is_admin');
+		$data['page_id'] = $this->session->userdata('page_id');							
+		$data['app_id'] = $this->session->userdata('app_id');							
 		
-		if($admin == 1 && $page_id)
+		if($data['admin'] == 1 && $data['page_id'])
 		{
 			// Get the data entered in a form in views/tab_admin		 
 			$data['message'] = html_purify($this->input->post('message')); //Clean the data
-			
-			// Add more data to pass to the view
-			$data['page_id'] = $page_id;
-			$data['is_admin'] = $admin;
-			$data['app_id'] = $app_id;
-					 
 			
 			// If there is a validation error, reload the form
 			if($this->form_validation->run('create') == FALSE)
@@ -198,7 +180,7 @@ class Tab extends CI_controller
 			// Validation success! Insert the user's data into the database and load a success page
 			else
 			{
-				if($this->Create->updater($data, $page_id))
+				if($this->Create->updater($data, $data['page_id']))
 			 	{  
 				   $this->load->view('tab/tab_public_admin', $data);
 			 	}
@@ -207,10 +189,8 @@ class Tab extends CI_controller
  		}
    		else
  		{
- 			$error = $this->lang->line('common_error_general');
-			$data = array(
-					'error' => $error,
-					);
+			$data['error'] = $this->lang->line('common_error_general');
+
  			$this->load->view('tab/tab_error', $data);
  		}
     		 

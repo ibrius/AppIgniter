@@ -8,15 +8,15 @@
 */
 
 $config['fb_config'] = array(
-				'appId'  => 'your_appID',
-				'secret' => 'your_app_secret',
-				'url' => 'https://apps.facebook.com/your_app_namespace', //With trailing slash / . Only needed for tab apps
+				'appId'  => 'YOUR_APP_ID',
+				'secret' => 'YOUR_APP_SECRET',
+				'url' => 'https://apps.facebook.com/YOUR_APP_NAMESPACE/', //With trailing slash /
 				'fileUpload' => false, // Indicates if the CURL based @ syntax for file uploads is enabled.
 				);
 				
 $config['fb_errors'] = TRUE; //Show graph api errors for calls made to the objects set here.
 
-$config['gate_on'] = true; // For page tab apps only.  If this is set to true, public users will have to like the page before seeing the apps content.
+$config['gate_on'] = false; // For page tab apps only.  If this is set to true, public users will have to like the page before seeing the apps content.
 
 
 /*
@@ -26,7 +26,7 @@ $config['gate_on'] = true; // For page tab apps only.  If this is set to true, p
 | If you only need a couple of user objects that don't require an access token or special permissions, 
 | then leave this set to false and specify what objects you want below to keep your session data smaller.
 */
-$config['token_on'] = FALSE;
+$config['token_on'] = false;
 		
 		
 /**
