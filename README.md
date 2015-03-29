@@ -13,6 +13,9 @@ AppIgniter Copyright 2012 Marina Ibrishimova and Byron Matus
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -----------------------------------------------------------------------------------------------------------------------
+### Important Note
+This repository is no longer being actively maintained.
+
 
 ### New in this version
 More efficient code, better error handling, a new post_to_graph() function in Appi model, overall restructuring of some things.
